@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <title>quote</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+
+        }
+        #card{
+            width: 80vw;
+            height: 80vh;
+            background-color: rgb(170, 5, 5);
+            margin: 20px auto;
+            color: aliceblue;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            position: relative;
+            box-shadow: 10px 5px 100px darkcyan;
+            
+        }
+
+        #heading{
+            font-size: 4rem;
+            margin-bottom: 40px;
+            text-decoration: underline;
+            margin-top: 100px;
+        }
+        #quote{
+            font-size: 2rem;
+            font-family: 'Lobster', cursive;
+        }
+        #author{
+            font-size: 1.5rem;
+            font-family: 'Lobster', cursive;
+           position: absolute;
+            left: 600px;
+            top: 270px;
+            
+
+        }
+        #btn{
+            font-size: 1.5rem;
+            width: 200px;
+            margin-top: 70px;
+            outline: 2px solid gray;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #greeting{
+            text-align: center;
+        
+        }
+    </style>
+</head>
+<body>
+     <h1 id="greeting"></h1>
+    <div id="card">
+        <h1 id="heading">random quote</h1>
+        <div id="quote"></div>
+        <div id="author"></div>
+        <button id="btn" onclick="">new quote</button>
+    </div>
+
+
+<script>
+   let url1 ="https://type.fit/api/quotes"
+  const author= document.getElementById("author")
+  const text= document.getElementById("quote")
+  const card =document.getElementById("card")
+  let realData="";
+ let random_quote =()=>{
+    let num =Math.floor(Math.random()*100);
+    
+    text.innerText=`${realData[num].text}`;
+    realData[num].author ==null?( author.innerText="unknown"):(author.innerText=`--Author : ${realData[num].author}`);
+   
+    let num1 =Math.floor(Math.random()*10);
+    let num2 =Math.floor(Math.random()*10);
+    // let num3 =Math.floor(Math.random()*100);
+    card.style.backgroundColor =`#${num1}${num2}0`
+    
+
+ }
+
+const quotes =async()=>{
+    try{
+    let data =await fetch(url1);
+     realData=await data.json();
+    random_quote()
+    } catch(error){
+
+    }
+
+}
+let button = document.getElementById("btn");
+button.addEventListener("click",random_quote)
+quotes()
+
+let currentdate = new Date();
+ let hour =currentdate.getHours();
+ let greeting ="";
+ if(hour >= 1 && hour < 12){
+     greeting ="morning";
+ }else if(hour>=12 && hour <16){
+     greeting ="afternoon";
+ }else if(hour>=16 && hour <20){
+     greeting ="evening"
+ }else{
+     greeting="night"
+ }
+ console.log(greeting);
+ document.getElementById("greeting").innerText =`lets start our ${greeting} with new quote.`;
+</script>
+
+</body>
+
+</html>

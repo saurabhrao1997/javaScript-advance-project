@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>id card genrator</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+
+        }
+        #card{
+            margin: 50px auto;
+          width: 80vw;
+          height: 80vh;
+          background-color: royalblue;
+          border: 1px solid blue;
+          display: flex;
+          justify-content: space-around;
+          
+        }
+        #ragistration{
+        width: 50%;
+
+
+        }
+        .input{
+            /* display: flex;
+            flex-direction: column;
+            justify-content: space-between; */
+            margin: 50px 30px 20px 50px ;
+        }
+
+         h3{
+             font-size: 1.5rem;
+             color: azure;
+         }
+         .input_tag{
+             width: 250px;
+             height: 35px;
+             border: 3px solid rgba(0, 0, 0, 0.1);
+             border-radius: 5px;
+         }
+         #btn{
+             width: 170px;
+             height: 40px;
+             margin-top: 20px;
+             margin-left: 60px;
+
+             font-size: 1.5rem;
+             background-color: rgb(14, 200, 233);
+             border-radius: 20px;
+             box-shadow: 10px 5px 200px white;
+         }
+         #idCard{
+          width: 50%; 
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+         }
+         #main_card{
+             margin-right: 20px;
+         max-width: 400px;
+         max-height: 300px;
+         display: flex;
+         justify-content: space-around;
+         border: 2px solid white;
+         background-color: burlywood;
+         box-shadow: 50px 50px 4050px rgb(126, 159, 252);
+         }
+         
+      
+         li{
+             font-size: 1.5rem;
+             color: white;
+             list-style: none;
+             margin-top: 20px;
+             cursor: pointer;
+         }
+
+
+        #display_image{
+            
+            margin-top: 20px;
+             width: 100px;
+             height: 150px;
+             box-shadow: 10px 30px 50px rgb(173, 172, 172);
+             border-radius: 50%;
+             cursor: pointer;
+
+        }
+        .head2{
+            color: aliceblue;
+            margin-left: 150px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="card">
+        <div id="ragistration">
+            <form action="">
+                <div class="input">
+                    <h3>enter your name :</h3>
+                    <input type="text" class="input_tag" id="name">
+                </div>
+           
+                <div class="input">
+                    <h3>enter collage name :</h3>
+                    <input type="text"  class="input_tag" id="collage">
+                </div>
+           
+                <div class="input">
+                    <h3>enter location :</h3>
+                    <input type="text"  class="input_tag" id="location">
+                </div>
+              <div class="input">
+                  <h3>upload the image :</h3>
+                  <input type="file"name="img_sorce" accept="image/*" id="image_id" onchange="load_image(event)">
+              </div>
+   
+                
+            </form>
+            <button type="submit" id="btn">registration</button>
+      
+        </div>
+        <div id="idCard">
+            <h2 class="head2">Id Card</h2>
+            <div id="main_card">
+                <img src="" id="display_image" alt="">
+                <ul id="ul">
+                    <li class="li">name : <span id="put_name"></span></li>
+                    <li class="li">collage :<span id="put_collage"></span></li>
+                    <li class="li">location : <span id="put_location"></span></li>
+                </ul>
+            </div>
+            
+        </div>
+        
+    </div>
+
+
+
+
+
+
+
+    <script>
+   
+        const btn =document.getElementById("btn");
+
+        btn.addEventListener("click",()=>{
+               
+        const collage = document.getElementById("collage").value;
+        const location1 = document.getElementById("location").value;
+         const name = document.getElementById("name").value;
+            
+        document.getElementById("put_name").innerHTML=name;    
+        document.getElementById("put_collage").innerHTML=collage; 
+        document.getElementById("put_location").innerHTML=location1;    
+
+        })
+         const load_image =(event)=>{
+             const display_image =document.getElementById("display_image");
+            //  console.log("hellow world");
+            //  console.log(display_image);
+             display_image.src=URL.createObjectURL(event.target.files[0]);
+         }
+    
+
+    </script>
+</body>
+</html>
